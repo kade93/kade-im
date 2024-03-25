@@ -22,12 +22,12 @@ jobs:
       - uses: int128/kaniko-action@v1
         with:
           push: true
-          tags: ${{ steps.metadata.outputs.tags }}
+          tags: ${{ secrets.DOCKER_REPOSITORY}}/kade-im-webapp:${{ github.ref_name }}-v${{ github.run_number }}
           labels: ${{ steps.metadata.outputs.labels }}
           cache: true
           cache-repository: ${{ secrets.DOCKER_REPOSITORY }}/kade-im-webapp/cache
-          build-args: |
-            --destination=${{ secrets.DOCKER_REPOSITORY}}/kade-im-webapp:${{ github.ref_name }}-v${{ github.run_number }}
+          # build-args: |
+            # --destination=${{ secrets.DOCKER_REPOSITORY}}/kade-im-webapp:${{ github.ref_name }}-v${{ github.run_number }}
   deploy:
     needs: build
     runs-on: self-hosted
