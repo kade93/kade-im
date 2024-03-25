@@ -14,10 +14,10 @@ jobs:
       - name: Kaniko build
         uses: aevea/action-kaniko@master
         with:
-          image: kade93/kade-im-webapp:test-action
+          image: kade93/kade-im-webapp
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          tag: test-action
+          # tag: test-action
 
           # cache: true
           # cache-repository: ${{ secrets.DOCKER_REPOSITORY }}/kade-im-webapp/cache
