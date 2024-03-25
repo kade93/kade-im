@@ -14,26 +14,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Prepare Docker metadata
-      id: metadata
-      uses: docker/metadata-action@v3
-      with:
-        images: ${{ secrets.DOCKER_USERNAME }}/kade-im-webapp  # Docker Hub의 사용자명/이미지명
-
-    - name: Login to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
     - name: Build and push Docker image with Kaniko
-      uses: int128/kaniko-action@v1
-      with:
-        push: true
-        tags: ${{ steps.metadata.outputs.tags }}
-        labels: ${{ steps.metadata.outputs.labels }}
-        cache: true
-        cache-repository: ${{ secrets.DOCKER_USERNAME }}/cache
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
+      run: |
+        echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"username\":\"${DOCKER_USERNAME}\",\"password\":\"${DOCKER_PASSWORD}\"}}}" > /kaniko/.docker/config.json
+        /kaniko/executor --context $GITHUB_WORKSPACE --dockerfile $GITHUB_WORKSPACE/Dockerfile --destination ${DOCKER_REPOSITORY}/your-app:${{ github.sha }} --cache
 
     - name: Update Kubernetes Deployment
       run: |
