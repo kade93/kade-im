@@ -16,8 +16,8 @@ jobs:
 
     - name: Build and push Docker image with Buildah
       run: |
-        buildah bud -t ${DOCKER_REPOSITORY}/:${{ github.sha }} -f $GITHUB_WORKSPACE/Dockerfile $GITHUB_WORKSPACE
-        buildah push ${DOCKER_REPOSITORY}/:${{ github.sha }}
+        buildah bud -t ${DOCKER_REPOSITORY}/kade-im-webapp:${{ github.sha }} -f $GITHUB_WORKSPACE/Dockerfile $GITHUB_WORKSPACE
+        buildah push ${DOCKER_REPOSITORY}/kade-im-webapp:${{ github.sha }}
       env:
         DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -25,4 +25,4 @@ jobs:
     
     - name: Update Kubernetes Deployment
       run: |
-        kubectl set image deployment/kade-im-deploy kade-im=${DOCKER_REPOSITORY}/:${{ github.sha }} --namespace default
+        kubectl set image deployment/kade-im-deploy kade-im=${DOCKER_REPOSITORY}/kade-im-webapp:${{ github.sha }} --namespace default
