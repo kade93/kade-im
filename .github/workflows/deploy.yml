@@ -14,12 +14,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Build and push Docker image with Kaniko
+    - name: Build and push Docker image with Buildah
       run: |
-        /kaniko/executor --context $GITHUB_WORKSPACE --dockerfile $GITHUB_WORKSPACE/Dockerfile --destination ${DOCKER_REPOSITORY}/:${{ github.sha }} --cache
+        buildah bud -t ${DOCKER_REPOSITORY}/:${{ github.sha }} -f $GITHUB_WORKSPACE/Dockerfile $GITHUB_WORKSPACE
+        buildah push ${DOCKER_REPOSITORY}/:${{ github.sha }}
       env:
         DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Update Kubernetes Deployment
       run: |
-        kubectl set image deployment/kade-im-deploy kade-im=${{ secrets.DOCKER_USERNAME }}/kade-im-webapp:${{ github.sha }} --namespace default
+        kubectl set image deployment/kade-im-deploy kade-im=${DOCKER_REPOSITORY}/:${{ github.sha }} --namespace default
