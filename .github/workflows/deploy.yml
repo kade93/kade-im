@@ -26,7 +26,7 @@ jobs:
           labels: ${{ steps.metadata.outputs.labels }}
           cache: true
           cache-repository: ${{ secrets.DOCKER_REPOSITORY }}/kade-im-webapp/cache
-          destination: ${{ secrets.DOCKER_REPOSITORY}}/kade-im-webapp:${{ github.ref_name }}-v${{ github.run_number }}
+          executor: --destination=${{ secrets.DOCKER_REPOSITORY}}/kade-im-webapp:${{ github.ref_name }}-v${{ github.run_number }}
   deploy:
     needs: build
     runs-on: self-hosted
