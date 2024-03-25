@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kade-im-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kade-im
+  template:
+    metadata:
+      labels:
+        app: kade-im
+    spec:
+      containers:
+      - name: kade-im
+        imagePullPolicy: Always
+        image: kade93/kade-im-webapp:1.0
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: kade93-registry-key
+

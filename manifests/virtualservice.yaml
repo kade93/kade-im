@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: kade-im-virtualservice
+  namespace: istio-system
+spec:
+  gateways:
+    - kade-im-gateway
+  hosts:
+    - kade.im
+  http:
+    - match:
+      - uri:
+          prefix: /
+      route:
+      -  destination:
+          host: kade-im-service.default.svc.cluster.local
+          port:
+            number: 3000

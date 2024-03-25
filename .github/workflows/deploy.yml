@@ -1,0 +1,38 @@
+name: Deploy to Kubernetes Cluster
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted  # Self-hosted runner 사용
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run tests  # 테스트 단계 추가
+      run: |
+        echo "test stage"
+
+    - name: Set up Kaniko
+      uses: GoogleContainerTools/kaniko-action@v1
+      with:
+        image: gcr.io/kaniko-project/executor:latest
+        cache: true
+
+    - name: Build and push Docker image with Kaniko
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
+      run: |
+        echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"username\":\"${DOCKER_USERNAME}\",\"password\":\"${DOCKER_PASSWORD}\"}}}" > /kaniko/.docker/config.json
+        /kaniko/executor --context $GITHUB_WORKSPACE --dockerfile $GITHUB_WORKSPACE/Dockerfile --destination ${DOCKER_REPOSITORY}:${{ github.sha }} --cache
+
+    - name: Update Kubernetes Deployment
+      run: |
+        kubectl set image deployment/kade-im-deploy kade-im=${DOCKER_REPOSITORY}:${{ github.sha }} --namespace default
