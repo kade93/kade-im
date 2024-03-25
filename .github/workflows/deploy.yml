@@ -15,15 +15,11 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Build and push Docker image with Kaniko
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
       run: |
-        sudo mkdir -p /kaniko/.docker
-        echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"username\":\"${DOCKER_USERNAME}\",\"password\":\"${DOCKER_PASSWORD}\"}}}" > /kaniko/.docker/config.json
         /kaniko/executor --context $GITHUB_WORKSPACE --dockerfile $GITHUB_WORKSPACE/Dockerfile --destination ${DOCKER_REPOSITORY}/:${{ github.sha }} --cache
-
+      env:
+        DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
+    
     - name: Update Kubernetes Deployment
       run: |
         kubectl set image deployment/kade-im-deploy kade-im=${{ secrets.DOCKER_USERNAME }}/kade-im-webapp:${{ github.sha }} --namespace default
