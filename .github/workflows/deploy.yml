@@ -18,11 +18,12 @@ jobs:
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
+          
       - uses: int128/kaniko-action@v1
         with:
           push: true
-          tags: ${{ github.sha }}
+          tags: ${{ steps.metadata.outputs.tags }}
+          labels: ${{ steps.metadata.outputs.labels }}
           cache: true
           cache-repository: ${{ secrets.DOCKER_REPOSITORY }}/kade-im-webapp/cache
 
