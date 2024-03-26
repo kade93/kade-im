@@ -32,10 +32,12 @@ const NotionPage: NextPage<NotionPageProps> = ({ recordMap }) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageId = context.params?.id as string;
   const recordMap = await notion.getPage(pageId);
+  
   return {
     props: {
       recordMap,
     },
+    revalidate: 30, // 10초마다 페이지를 재생성합니다.
   };
 };
 
