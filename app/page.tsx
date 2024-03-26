@@ -10,8 +10,7 @@ import { Button } from "@/components/ui/button"
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card"
 import { LinkedinIcon } from 'lucide-react';
 
-const notionPageId = process.env.NOTION_PAGE_ID;
-
+const notionPageId = "Kade-s-Tech-Blog-fda966d9131542b1a4ecd1f8531664cd";
 
 export default function Component() {
   return (
