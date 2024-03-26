@@ -1,5 +1,5 @@
 import React from 'react';
-
+import dynamic from 'next/dynamic';
 /**
  * v0 by Vercel.
  * @see https://v0.dev/t/F2ZzH6GzbeM
@@ -8,21 +8,23 @@ import React from 'react';
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card"
+import { LinkedinIcon } from 'lucide-react';
 
 const notionPageId = process.env.NOTION_PAGE_ID;
+
 
 export default function Component() {
   return (
     <>
       <div className="relative overflow-hidden">
         <header className="sticky inset-x-0 top-0 z-10 backdrop-blur-smooth flex items-center justify-between h-14 px-4 text-sm bg-white border-b border-gray-100 dark:bg-gray-950 dark:border-gray-850">
-          <Link className="flex items-center gap-2 font-semibold" href="#">
+          <Link className="flex items-center gap-2 font-semibold" href="kade.im">
             kade.im
           </Link>
           <nav className="flex items-center gap-4">
             <Link
               className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              href="#"
+              href="kade.im"
             >
               Main
             </Link>
@@ -31,12 +33,6 @@ export default function Component() {
               href={`/notion-page/${notionPageId}`}
             >
               Blog
-            </Link>
-            <Link
-              className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              href="/notion-page/}"
-            >
-              Profile
             </Link>
             <Link
               className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -50,64 +46,73 @@ export default function Component() {
             >
               Chats
             </Link>
+            <Link
+              className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              href="#"
+            >
+              Quests
+            </Link>
           </nav>
-        </header>
+        </header>        
         <main className="min-h-screen py-6 flex flex-col items-center justify-center">
+          <div>
+
+
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* 카드 예시 */}
             <Link href={`/notion-page/${notionPageId}`} passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow">
                 <img
-                  src="images/wip.png" // 썸네일 이미지 경로
-                  alt="wip image"
-                  className="w-full h-48 object-cover"
+                  src="images/notion-x.png" // 썸네일 이미지 경로
+                  alt="react-notion-x image"
+                  className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
-                    <h5 className="text-lg font-semibold">Blog</h5>
-                    <p className="text-sm text-gray-600">Kade&apos;s Tech Notion Blog</p>
+                    <h5 className="text-lg font-semibold text-center">Blog</h5>
+                    <p className="text-sm text-gray-600 text-center">Notion Blog</p>
                 </div>
               </div>
             </Link>
             <Link href="#" passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow">
               <img
-                  src="images/wip.png" // 썸네일 이미지 경로
+                  src="images/projects_p.png" // 썸네일 이미지 경로
                   alt="wip image"
-                  className="w-full h-48 object-cover"
+                  className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
-                  <h5 className="text-lg font-semibold">Profile</h5>
-                  <p className="text-sm text-gray-600">Go to Korean Profile - Surfit </p>
+                  <h5 className="text-lg font-semibold text-center">Projects</h5>
+                  <p className="text-sm text-gray-600 text-center">Side Projects</p>
                 </div>
               </div>
             </Link>
             <Link href="#" passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow">
               <img
-                  src="images/wip.png" // 썸네일 이미지 경로
-                  alt="wip image"
-                  className="w-full h-48 object-cover"
+                  src="images/prompt_chats.png" // 썸네일 이미지 경로
+                  alt="prompt chatting image"
+                  className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
-                  <h5 className="text-lg font-semibold">Projects</h5>
-                  <p className="text-sm text-gray-600">Look some Side Projects (WIP)</p>
+                  <h5 className="text-lg font-semibold text-center">Chats</h5>
+                  <p className="text-sm text-gray-600 text-center">Prompt Chat</p>
                 </div>
               </div>
             </Link>
             <Link href="#" passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow">
               <img
-                  src="images/wip.png" // 썸네일 이미지 경로
-                  alt="wip image"
-                  className="w-full h-48 object-cover"
+                  src="images/quests.png" // 썸네일 이미지 경로
+                  alt="quest image"
+                  className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
-                  <h5 className="text-lg font-semibold">Chats</h5>
-                  <p className="text-sm text-gray-600">Ask Anything to Me</p>
+                  <h5 className="text-lg font-semibold text-center">Quests</h5>
+                  <p className="text-sm text-gray-600 text-center">Ask and Request</p>
                 </div>
               </div>
             </Link>
-            {/* 다른 카드들... */}
           </div>
         </main>
       </div>
