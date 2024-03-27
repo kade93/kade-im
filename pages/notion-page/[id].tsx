@@ -6,6 +6,8 @@ import { Code } from 'react-notion-x/build/third-party/code'
 import { Collection } from 'react-notion-x/build/third-party/collection'
 import { Modal } from 'react-notion-x/build/third-party/modal'
 import "react-notion-x/src/styles.css";
+// used for code syntax highlighting (optional)
+import 'prismjs/themes/prism-tomorrow.css'
 
 const notion = new NotionAPI();
 
