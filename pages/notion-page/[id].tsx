@@ -4,9 +4,7 @@ import { NotionAPI } from "notion-client";
 import { NotionRenderer } from "react-notion-x";
 import { Code } from 'react-notion-x/build/third-party/code'
 import { Collection } from 'react-notion-x/build/third-party/collection'
-import { Equation } from 'react-notion-x/build/third-party/equation'
 import { Modal } from 'react-notion-x/build/third-party/modal'
-import { Pdf } from 'react-notion-x/build/third-party/pdf'
 import "react-notion-x/src/styles.css";
 
 const notion = new NotionAPI();
@@ -22,7 +20,7 @@ const NotionPage: NextPage<NotionPageProps> = ({ recordMap }) => {
         recordMap={recordMap}
         fullPage={true}
         disableHeader
-        components={{ Collection, Modal }}
+        components={{ Collection, Modal , Code}}
         mapPageUrl={(pageId) => `/notion-page/${pageId}`}
       />
     </div>
