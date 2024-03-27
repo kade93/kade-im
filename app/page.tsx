@@ -1,14 +1,17 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
 /**
  * v0 by Vercel.
  * @see https://v0.dev/t/F2ZzH6GzbeM
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import Link from "next/link"
+import Footer from './footer';
 import { Button } from "@/components/ui/button"
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card"
-import { LinkedinIcon } from 'lucide-react';
+import TopNav from './topnav';
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
 
 const notionPageId = "Kade-s-Tech-Blog-fda966d9131542b1a4ecd1f8531664cd";
 
@@ -17,49 +20,17 @@ export default function Component() {
     <>
       <div className="relative overflow-hidden">
         <header className="sticky inset-x-0 top-0 z-10 backdrop-blur-smooth flex items-center justify-between h-14 px-4 text-sm bg-white border-b border-gray-100 dark:bg-gray-950 dark:border-gray-850">
-          <Link className="flex items-center gap-2 font-semibold" href="kade.im">
+          <Link className="flex items-center gap-2 font-semibold" href="/">
             kade.im
           </Link>
-          <nav className="flex items-center gap-4">
-            <Link
-              className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              href="kade.im"
-            >
-              Main
-            </Link>
-            <Link
-              className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              href={`/notion-page/${notionPageId}`}
-            >
-              Blog
-            </Link>
-            <Link
-              className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              href="#"
-            >
-              Projects
-            </Link>
-            <Link
-              className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              href="#"
-            >
-              Chats
-            </Link>
-            <Link
-              className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              href="#"
-            >
-              Quests
-            </Link>
-          </nav>
+          <TopNav>
+          </TopNav>
         </header>        
         <main className="min-h-screen py-6 flex flex-col items-center justify-center">
-          <div>
-
-
+        <div className="welcome-section text-center py-6">
+          <h2 className="text-2xl font-bold">Hi, Welcome! 안녕하세요 !</h2>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Link href={`/notion-page/${notionPageId}`} passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow">
                 <img
@@ -114,7 +85,9 @@ export default function Component() {
             </Link>
           </div>
         </main>
-      </div>
+        </div>
+      <Footer>
+      </Footer>
     </>
   )
 }
