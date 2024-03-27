@@ -18,7 +18,7 @@ const notionPageId = "Kade-s-Tech-Blog-fda966d9131542b1a4ecd1f8531664cd";
 export default function Component() {
   return (
     <>
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden min-h-screen">
         <header className="sticky inset-x-0 top-0 z-10 backdrop-blur-smooth flex items-center justify-between h-14 px-4 text-sm bg-white border-b border-gray-100 dark:bg-gray-950 dark:border-gray-850">
           <Link className="flex items-center gap-2 font-semibold" href="/">
             kade.im
@@ -26,11 +26,11 @@ export default function Component() {
           <TopNav>
           </TopNav>
         </header>        
-        <main className="min-h-screen py-6 flex flex-col items-center justify-center">
-        <div className="welcome-section text-center py-6">
-          <h2 className="text-2xl font-bold">Hi, Welcome! 안녕하세요 !</h2>
+        <main className="py-20 flex flex-col items-center justify-center">
+          <div className="welcome-section text-center py-4">
+            <h2 className="text-2xl font-bold">Hi, Welcome! 안녕하세요 !</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Link href={`/notion-page/${notionPageId}`} passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow">
                 <img
@@ -40,33 +40,30 @@ export default function Component() {
                 />
                 <div className="p-4">
                     <h5 className="text-lg font-semibold text-center">Blog</h5>
-                    <p className="text-sm text-gray-600 text-center">Notion Blog</p>
                 </div>
               </div>
             </Link>
             <Link href="#" passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow">
               <img
-                  src="images/projects_p.png" // 썸네일 이미지 경로
+                  src="images/projects.png" // 썸네일 이미지 경로
                   alt="wip image"
                   className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
                   <h5 className="text-lg font-semibold text-center">Projects</h5>
-                  <p className="text-sm text-gray-600 text-center">Side Projects</p>
                 </div>
               </div>
             </Link>
             <Link href="#" passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow">
               <img
-                  src="images/prompt_chats.png" // 썸네일 이미지 경로
+                  src="images/chats.png" // 썸네일 이미지 경로
                   alt="prompt chatting image"
                   className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
                   <h5 className="text-lg font-semibold text-center">Chats</h5>
-                  <p className="text-sm text-gray-600 text-center">Prompt Chat</p>
                 </div>
               </div>
             </Link>
@@ -79,15 +76,14 @@ export default function Component() {
                 />
                 <div className="p-4">
                   <h5 className="text-lg font-semibold text-center">Quests</h5>
-                  <p className="text-sm text-gray-600 text-center">Ask and Request</p>
                 </div>
               </div>
             </Link>
           </div>
-        </main>
+          </main>
         </div>
-      <Footer>
-      </Footer>
+          <Footer>
+          </Footer>
     </>
   )
 }

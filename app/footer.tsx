@@ -4,7 +4,7 @@ import { faLinkedin, faGithub, faStackOverflow } from '@fortawesome/free-brands-
 
 const Footer = () => {
   return (
-    <div className="flex justify-center items-center p-4 bg-gray-100">
+    <div className="sticky bottom-0 z-10 backdrop-blur-smooth flex items-center justify-center h-14 px-4 text-sm bg-gray-100">
       <a href="https://www.linkedin.com/in/kade93" target="_blank" className="mx-2 text-gray-600 hover:text-blue-600">
         <FontAwesomeIcon icon={faLinkedin as IconProp} />
       </a>
