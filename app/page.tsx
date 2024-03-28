@@ -39,7 +39,7 @@ export default function Component() {
                   className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
-                    <h5 className="text-lg font-semibold text-center">Blog</h5>
+                    <h5 className="text-lg font-semibold text-center text-gray-200 dark:text-gray-900">Blog</h5>
                 </div>
               </div>
             </Link>
@@ -51,7 +51,7 @@ export default function Component() {
                   className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
-                  <h5 className="text-lg font-semibold text-center">Projects</h5>
+                <h5 className="text-lg font-semibold text-center text-gray-200 dark:text-gray-900">Projects</h5>
                 </div>
               </div>
             </Link>
@@ -63,7 +63,7 @@ export default function Component() {
                   className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
-                  <h5 className="text-lg font-semibold text-center">Chats</h5>
+                <h5 className="text-lg font-semibold text-center text-gray-200 dark:text-gray-900">Chats</h5>
                 </div>
               </div>
             </Link>
@@ -75,7 +75,7 @@ export default function Component() {
                   className="w-60 h-60 object-cover"
                 />
                 <div className="p-4">
-                  <h5 className="text-lg font-semibold text-center">Quests</h5>
+                <h5 className="text-lg font-semibold text-center text-gray-200 dark:text-gray-900">Quests</h5>
                 </div>
               </div>
             </Link>
