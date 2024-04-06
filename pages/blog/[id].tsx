@@ -24,7 +24,7 @@ const NotionPage: NextPage<NotionPageProps> = ({ recordMap }) => {
         darkMode={false}
         disableHeader
         components={{ Collection, Modal , Code}}
-        mapPageUrl={(pageId) => `/notion-page/${pageId}`}
+        mapPageUrl={(pageId) => `/blog/${pageId}`}
       />
     </div>
   );
