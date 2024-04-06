@@ -21,6 +21,7 @@ const NotionPage: NextPage<NotionPageProps> = ({ recordMap }) => {
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
+        darkMode={false}
         disableHeader
         components={{ Collection, Modal , Code}}
         mapPageUrl={(pageId) => `/notion-page/${pageId}`}

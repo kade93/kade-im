@@ -15,7 +15,7 @@ return (
   </Link>
   <Link
     className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-    href={`/notion-page/${notionPageId}`}
+    href={`/blog/${notionPageId}`}
   >
     Blog
   </Link>
