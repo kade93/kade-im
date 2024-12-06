@@ -13,7 +13,8 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
-const notionPageId = "Kade-s-Tech-Blog-fda966d9131542b1a4ecd1f8531664cd";
+const BlogNotionPageId = "Kade-s-Tech-Blog-fda966d9131542b1a4ecd1f8531664cd";
+const ProjectNotionPageId = "Kade-s-Projects-15471659327480208914f8d2f85b89a1"
 
 export default function Component() {
   return (
@@ -31,7 +32,7 @@ export default function Component() {
             <h2 className="text-2xl font-bold">Hi, Welcome! 안녕하세요 !</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <Link href={`/blog/${notionPageId}`} passHref>
+            <Link href={`/blog/${BlogNotionPageId}`} passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow p-4 sm:p-6r" > {/* Smaller padding on mobile */}
                 <div className="flex flex-col items-center"> {/* Additional div for centering */}
                   <img
@@ -45,7 +46,7 @@ export default function Component() {
                 </div>
               </div>
             </Link>
-            <Link href="#" passHref>
+            <Link href={`/projects/${ProjectNotionPageId}`} passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow p-4 sm:p-6r" > {/* Smaller padding on mobile */}
                 <div className="flex flex-col items-center"> {/* Additional div for centering */}
                   <img

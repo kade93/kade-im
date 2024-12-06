@@ -15,7 +15,7 @@ interface NotionPageProps {
   recordMap: any;
 }
 
-const BlogNotionPage: NextPage<NotionPageProps> = ({ recordMap }) => {
+const ProjectNotionPage: NextPage<NotionPageProps> = ({ recordMap }) => {
   return (
     <div>
       <NotionRenderer
@@ -51,4 +51,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export default BlogNotionPage;
+export default ProjectNotionPage;
