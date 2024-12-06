@@ -1,7 +1,8 @@
 // topnav.tsx
 
 import Link from "next/link"
-const notionPageId = "Kade-s-Tech-Blog-fda966d9131542b1a4ecd1f8531664cd";
+const BlogNotionPageId = "Kade-s-Tech-Blog-fda966d9131542b1a4ecd1f8531664cd";
+const ProjectNotionPageId = "Kade-s-Projects-15471659327480208914f8d2f85b89a1"
 
 
 const TopNav = () => {
@@ -15,13 +16,13 @@ return (
   </Link>
   <Link
     className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-    href={`/blog/${notionPageId}`}
+    href={`/blog/${BlogNotionPageId}`}
   >
     Blog
   </Link>
   <Link
     className="flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-    href="#"
+    href={`/projects/${ProjectNotionPageId}`}
   >
     Projects
   </Link>
