@@ -60,7 +60,7 @@ export default function Component() {
                 </div>
               </div>
             </Link>
-            <Link href="#" passHref>
+            <Link href="/chat" passHref>
               <div className="cursor-pointer overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow p-4 sm:p-6r" > {/* Smaller padding on mobile */}
                 <div className="flex flex-col items-center"> {/* Additional div for centering */}
                   <img
@@ -70,6 +70,7 @@ export default function Component() {
                   />
                   <div className="p-2">
                     <h5 className="text-lg sm:text-lg font-semibold text-center text-gray-900 dark:text-gray-900">Chats</h5>
+                    <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Beta</span>
                   </div>
                 </div>
               </div>
