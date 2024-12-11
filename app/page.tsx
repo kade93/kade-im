@@ -71,7 +71,7 @@ export default function Component() {
                     className="w-32 h-32 sm:w-40 sm:h-40 object-cover thumbnail" // Image size
                   />
                   <div className="p-2">
-                    <h5 className="text-lg sm:text-lg font-semibold text-center text-gray-900 dark:text-gray-900">Chats</h5>
+                    <h5 className="text-lg sm:text-lg font-semibold text-center text-gray-900 dark:text-gray-900">Chat</h5>
                     <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Beta</span>
                   </div>
                 </div>

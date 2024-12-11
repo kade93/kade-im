@@ -1,2 +1,13 @@
 ### kade.im Hosting
-kade.im은 React-Notion-X와 Next.js를 사용하여 구축된 웹사이트로, 개인적인 내용 및 프로젝트를 위한 포트폴리오 페이지입니다. AWS EC2 인스턴스에서 호스팅되며, GitHub Actions를 통해 CI/CD 파이프라인이 자동화되어 있습니다.
+> kade.im is a portfolio website built using React-Notion-X and Next.js to showcase personal content and projects.
+
+* Hosted on an AWS EC2 instance with a fully automated CI/CD pipeline managed through GitHub Actions.
+
+### Features
+1. Blog: Redirects to my Notion-based blog.
+2. Project: Showcases my project portfolio (powered by Notion).
+3. Chat: A conversational bot utilizing LLM APIs with Retrieval-Augmented Generation (RAG) to answer questions based on my documents.
+4. Quest: A request form where you can submit tasks or ideas, which will be saved to my Google Spreadsheet.
+
+* The Google App Script used for handling form submissions might occasionally experience delays and may require further optimization.
+* LLM Chat service is unstable (free api from Gemini API)
