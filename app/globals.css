@@ -46,3 +46,10 @@ body {
 .thumbnail:hover {
   animation: post-ani 1s linear 1;
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15rem; /* Adjust to your desired card height */
+}
