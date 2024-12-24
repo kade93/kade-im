@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 interface QuestFormProps {
   onClose: () => void;
+  onSubmitSuccess: () => void;
 }
 const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwRbm9hGoHIcAznwVPrKnX1C9Z1DWMHhBft-AaOfYPflwr3ndjBZcZgCkkFsdhxaEY2/exec"; // Web App URL
 
-const QuestForm: React.FC<QuestFormProps> = ({ onClose }) => {
+const QuestForm: React.FC<QuestFormProps> = ({ onClose, onSubmitSuccess }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
@@ -36,6 +37,7 @@ const QuestForm: React.FC<QuestFormProps> = ({ onClose }) => {
           setName("");
           setEmail("");
           setDescription("");
+          onSubmitSuccess(); // 
         } else {
           throw new Error(result.error || "Unknown error");
         }
