@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  background-color: black; /* Replace with your desired color */
+  color: black; /* Ensure text is legible */
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure the height is consistent */
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 234, 236, 237; /* Lighter grey */
@@ -52,4 +61,13 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 15rem; /* Adjust to your desired card height */
+}
+
+.notion-content {
+  opacity: 0; /* Hide initially */
+  transition: opacity 0.3s ease-in-out; /* Smooth fade-in */
+}
+
+.notion-content.loaded {
+  opacity: 1; /* Show when loaded */
 }

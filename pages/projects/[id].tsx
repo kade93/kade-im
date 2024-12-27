@@ -6,6 +6,9 @@ import { Code } from 'react-notion-x/build/third-party/code'
 import { Collection } from 'react-notion-x/build/third-party/collection'
 import { Modal } from 'react-notion-x/build/third-party/modal'
 import "react-notion-x/src/styles.css";
+import Link from "next/link";
+import TopNav from "@/app/topnav";
+import '@/app/globals.css'       // Tailwind first
 // used for code syntax highlighting (optional)
 import 'prismjs/themes/prism-tomorrow.css'
 
@@ -17,16 +20,26 @@ interface NotionPageProps {
 
 const ProjectNotionPage: NextPage<NotionPageProps> = ({ recordMap }) => {
   return (
-    <div>
+    <div className="relative">
+      {/* Navigation Links */}
+      <header className="sticky inset-x-0 top-0 z-10 backdrop-blur-smooth flex items-center justify-between h-14 px-2 sm:px-4 text-xs sm:text-sm bg-white border-b border-gray-100 dark:bg-gray-950 dark:border-gray-850">
+          <Link className="flex items-center gap-1 sm:gap-2 text-xs sm:font-semibold" href="/">
+            kade.im
+          </Link>
+          <TopNav>
+          </TopNav>
+      </header>
+
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
         darkMode={false}
         disableHeader
-        components={{ Collection, Modal , Code}}
-        mapPageUrl={(pageId) => `/blog/${pageId}`}
+        components={{ Collection, Modal, Code }}
+        mapPageUrl={(pageId) => `/projects/${pageId}`}
+        isImageZoomable
       />
-    </div>
+      </div>
   );
 };
 
