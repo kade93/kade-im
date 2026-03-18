@@ -9,6 +9,7 @@ spec:
   servers:
     - hosts:
         - kade.im
+        - wedding.kade.im
       port:
         name: https
         number: 443
