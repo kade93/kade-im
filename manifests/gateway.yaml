@@ -17,3 +17,13 @@ spec:
       tls:
         credentialName: istio-ingressgateway-certs
         mode: SIMPLE
+    - hosts:
+        - donghyun-jihye.com
+        - "*.donghyun-jihye.com"
+      port:
+        name: https-dh
+        number: 443
+        protocol: HTTPS
+      tls:
+        credentialName: donghyun-jihye-certs
+        mode: SIMPLE
