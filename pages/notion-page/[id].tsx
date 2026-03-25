@@ -1,50 +1,75 @@
 import React from "react";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
-import { NotionAPI } from "notion-client";
-import { NotionRenderer } from "react-notion-x";
-import { Code } from 'react-notion-x/build/third-party/code'
-import { Collection } from 'react-notion-x/build/third-party/collection'
-import { Equation } from 'react-notion-x/build/third-party/equation'
-import { Modal } from 'react-notion-x/build/third-party/modal'
-import { Pdf } from 'react-notion-x/build/third-party/pdf'
-import "react-notion-x/src/styles.css";
-
-const notion = new NotionAPI();
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import { getPageMarkdown, getPageInfo } from "../../lib/notion";
 
 interface NotionPageProps {
-  recordMap: any;
+  mdString: string;
+  pageTitle: string;
 }
 
-const NotionPage: NextPage<NotionPageProps> = ({ recordMap }) => {
+const NotionPage: NextPage<NotionPageProps> = ({ mdString, pageTitle }) => {
   return (
-    <div>
-      <NotionRenderer
-        recordMap={recordMap}
-        fullPage={true}
-        disableHeader
-        components={{ Collection, Modal }}
-        mapPageUrl={(pageId) => `/notion-page/${pageId}`}
-      />
+    <div className="max-w-3xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+      <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 mb-8">
+        {pageTitle}
+      </h1>
+      <div className="prose prose-blue dark:prose-invert max-w-none">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+          components={{
+            img: ({ node, ...props }) => (
+              <img className="max-w-full rounded-lg shadow-sm my-4" {...props} />
+            ),
+            a: ({ node, ...props }) => (
+              <a className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer" {...props} />
+            ),
+          }}
+        >
+          {mdString}
+        </ReactMarkdown>
+      </div>
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageId = context.params?.id as string;
-  const recordMap = await notion.getPage(pageId);
-  return {
-    props: {
-      recordMap,
-    },
-  };
+  try {
+    const mdString = await getPageMarkdown(pageId);
+    const pageInfo = await getPageInfo(pageId) as any;
+    
+    // Attempt to extract the title if it's a standard Notion page
+    let pageTitle = "Untitled Page";
+    if (pageInfo.properties && pageInfo.properties.title && pageInfo.properties.title.title[0]) {
+      pageTitle = pageInfo.properties.title.title[0].plain_text;
+    } else if (pageInfo.properties && pageInfo.properties.Name && pageInfo.properties.Name.title[0]) {
+      pageTitle = pageInfo.properties.Name.title[0].plain_text;
+    }
+
+    return {
+      props: {
+        mdString,
+        pageTitle,
+      },
+      revalidate: 60, // Optional: useful if standalone mode is used instead of export
+    };
+  } catch (error) {
+    console.error("Error fetching Notion page:", error);
+    return { notFound: true };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // 여기서는 예시로 빈 배열을 사용하고 있지만,
-  // 실제 프로젝트에서는 Notion API를 사용하여 모든 페이지의 ID를 가져와야 합니다.
+  const defaultPageId = process.env.NOTION_PAGE_ID || "Kade-s-Tech-Blog-fda966d9131542b1a4ecd1f8531664cd";
   return {
-    paths: [],
-    fallback: true,
+    paths: [
+      { params: { id: defaultPageId } }
+    ],
+    fallback: "blocking",
   };
 };
 
