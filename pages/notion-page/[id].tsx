@@ -13,9 +13,11 @@ interface NotionPageProps {
 const NotionPage: NextPage<NotionPageProps> = ({ mdString, pageTitle }) => {
   return (
     <div className="max-w-3xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 mb-8">
-        {pageTitle}
-      </h1>
+      {pageTitle && (
+        <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 mb-8">
+          {pageTitle}
+        </h1>
+      )}
       <div className="prose prose-blue dark:prose-invert max-w-none">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
@@ -43,7 +45,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const pageInfo = await getPageInfo(pageId) as any;
     
     // Attempt to extract the title if it's a standard Notion page
-    let pageTitle = "Untitled Page";
+    let pageTitle = "";
     if (pageInfo.properties && pageInfo.properties.title && pageInfo.properties.title.title[0]) {
       pageTitle = pageInfo.properties.title.title[0].plain_text;
     } else if (pageInfo.properties && pageInfo.properties.Name && pageInfo.properties.Name.title[0]) {

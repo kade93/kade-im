@@ -9,8 +9,8 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 export async function getPageMarkdown(pageId: string) {
   const mdblocks = await n2m.pageToMarkdown(pageId);
-  const mdString = n2m.toMarkdownString(mdblocks);
-  return mdString.parent || '';
+  const content = mdString.parent || '';
+  return content.replace(/Untitled/gi, '');
 }
 
 export async function getPageInfo(pageId: string) {
