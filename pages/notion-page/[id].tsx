@@ -1,4 +1,6 @@
 import React from "react";
+import { useRouter } from "next/router";
+import { Loader2 } from "lucide-react";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -11,6 +13,17 @@ interface NotionPageProps {
 }
 
 const NotionPage: NextPage<NotionPageProps> = ({ mdString, pageTitle }) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <div className="max-w-3xl mx-auto py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+        <Loader2 className="w-10 h-10 animate-spin text-blue-500 mb-4" />
+        <p className="text-gray-500 font-medium dark:text-gray-400">페이지를 불러오는 중입니다...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-3xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
       {pageTitle && (
@@ -71,7 +84,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: [
       { params: { id: defaultPageId } }
     ],
-    fallback: "blocking",
+    fallback: true,
   };
 };
 
